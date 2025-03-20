@@ -1,5 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import axios from 'axios';
+import styled from 'styled-components';
+
+// Styled components for better UI
+const Container = styled(motion.div)`
+  text-align: center;
+  padding: 20px;
+`;
+
+const Card = styled(motion.div)`
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  width: 250px;
+`;
+
+const Row = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+`;
 
 export default function AdminHome() {
   const [adminData, setAdminData] = useState("");
@@ -7,6 +31,7 @@ export default function AdminHome() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    // Retrieve admin data from local storage
     const storedAdminData = localStorage.getItem('admin');
     if (storedAdminData) {
       const parsedAdminData = JSON.parse(storedAdminData);
@@ -25,63 +50,25 @@ export default function AdminHome() {
   };
 
   return (
-    <div>
+    <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
       {adminData && (
-        <div style={{alignContent:"center"}}> 
-          <h4>Welcome {adminData.username}</h4>
+        <>
+          <h4>Welcome, {adminData.username}</h4>
           {counts ? (
-            <div className="row">
-
-             <div className="column">
-                <div className="card">
-                  <h3>Job Seekers</h3>
-                  <p>{counts.jobseekerCount}</p>
-                </div>
-              </div>
-
-              <div className="column">
-                <div className="card">
-                  <h3>Recruiters</h3>
-                  <p>{counts.recruiterCount}</p>
-                </div>
-              </div>
-
-
-              <div className="column">
-                <div className="card">
-                  <h3>Jobs</h3>
-                  <p>{counts.jobCount}</p>
-                </div>
-              </div>
-
-              <div className="column">
-                <div className="card">
-                  <h3>Job Applicants</h3>
-                  <p>{counts.jobApplicantCount}</p>
-                </div>
-              </div>
-
-              <div className="column">
-                <div className="card">
-                  <h3>Selected Applicants</h3>
-                  <p>{counts.selectedCount}</p>
-                </div>
-              </div>
-
-
-              <div className="column">
-                <div className="card">
-                  <h3>Rejected Applicants</h3>
-                  <p>{counts.rejectedCount}</p>
-                </div>
-              </div>
-            </div>
+            <Row>
+              {Object.entries(counts).map(([key, value]) => (
+                <Card key={key} whileHover={{ scale: 1.05 }}>
+                  <h3>{key.replace(/([A-Z])/g, ' $1')}</h3>
+                  <p>{value}</p>
+                </Card>
+              ))}
+            </Row>
           ) : (
             <p>Loading counts...</p>
           )}
           {error && <p style={{ color: 'red' }}>{error}</p>}
-        </div>
+        </>
       )}
-    </div>
+    </Container>
   );
 }

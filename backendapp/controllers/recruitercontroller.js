@@ -2,6 +2,7 @@ const Recruiter = require("../models/Recruiter")
 const Job = require("../models/Job")
 const JobApplicant = require("../models/JobApplicant")
 
+// Function to check recruiter login credentials
 const checkrecruiterlogin = async (request, response) => 
 {
    try 
@@ -16,7 +17,8 @@ const checkrecruiterlogin = async (request, response) =>
    }
  };
 
- const addjob = async (request, response) => {
+// Function to add a new job posting
+const addjob = async (request, response) => {
   try 
   {
     const input = request.body;
@@ -31,6 +33,7 @@ const checkrecruiterlogin = async (request, response) =>
   }
 };
 
+// Function to fetch all jobs posted by a specific recruiter
 const viewjobs = async (request, response) => 
  {
     try 
@@ -52,7 +55,8 @@ const viewjobs = async (request, response) =>
     }
   };
 
-  const viewjobapplicants = async (request, response) => 
+// Function to fetch job applicants for jobs posted by a recruiter
+const viewjobapplicants = async (request, response) => 
   {
     try 
     {
@@ -85,6 +89,7 @@ const viewjobs = async (request, response) =>
     }
 };
 
+// Function to update the job application status of an applicant
 const changejobstatus = async (request, response) => 
 {
   try 
@@ -108,6 +113,5 @@ const changejobstatus = async (request, response) =>
   }
 };
 
-
-
- module.exports = {checkrecruiterlogin,addjob,viewjobs,viewjobapplicants,changejobstatus}
+// Exporting all recruiter-related functions
+module.exports = {checkrecruiterlogin,addjob,viewjobs,viewjobapplicants,changejobstatus}

@@ -198,3 +198,156 @@ button[type='submit']:hover {
     transform: translateY(-10px);
   }
 }
+
+
+/* Profile container with centered content */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f5f5f5;
+}
+
+/* Profile card styling */
+.profile-card {
+  width: 350px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  font-size: 18px;
+  color: #333;
+  transition: transform 0.3s;
+}
+
+.profile-card:hover {
+  transform: scale(1.02);
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+
+
+/* Container for job seekers table */
+.jobseekers-container {
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 80vh;
+}
+
+/* Table styling */
+.jobseekers-table {
+  width: 90%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Table headers */
+.jobseekers-table th {
+  background-color: #007BFF;
+  color: white;
+  padding: 12px;
+}
+
+/* Table rows */
+.jobseekers-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect on rows */
+.jobseekers-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Buttons styling */
+.view-button, .delete-button {
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+/* View Button */
+.view-button {
+  background-color: #28a745;
+  color: white;
+  margin-right: 5px;
+}
+
+.view-button:hover {
+  background-color: #218838;
+}
+
+/* Delete Button */
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Container for recruiters table */
+.recruiters-container {
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 80vh;
+}
+
+/* Table styling */
+.recruiters-table {
+  width: 90%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Table headers */
+.recruiters-table th {
+  background-color: #007BFF;
+  color: white;
+  padding: 12px;
+}
+
+/* Table rows */
+.recruiters-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect on rows */
+.recruiters-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Delete Button */
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}

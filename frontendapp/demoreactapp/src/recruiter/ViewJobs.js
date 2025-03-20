@@ -1,38 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion'; // Import Framer Motion for animations
 import './recruiter.css';
 
 export default function ViewJobs() {
-
+  // State to store recruiter data
   const [recruiterData, setRecruiterData] = useState("");
+  const [jobs, setJobs] = useState([]);
 
+  // Fetch recruiter data from local storage
   useEffect(() => {
     const storedRecruiterData = localStorage.getItem('recruiter');
     if (storedRecruiterData) {
       const parsedRecruiterData = JSON.parse(storedRecruiterData);
-      setRecruiterData(parsedRecruiterData)
+      setRecruiterData(parsedRecruiterData);
     }
   }, []);
 
-  const [jobs, setJobs] = useState([]);
-
+  // Fetch jobs posted by the recruiter
   const fetchJobs = async () => {
     try {
       const response = await axios.get(`http://localhost:2032/viewjobs/${recruiterData.username}`);
       setJobs(response.data);
     } catch (error) {
-      console.error(error.message);
+      console.error("Error fetching jobs:", error.message);
     }
-  }
+  };
 
+  // Fetch jobs when the component mounts
   useEffect(() => {
     fetchJobs();
-  }); 
+  }, []);
 
   return (
-    <div className="table-container">
+    <motion.div 
+      className="table-container"
+      initial={{ opacity: 0, y: -20 }} // Fade-in and slide-down effect
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       <h3>Posted Jobs</h3>
-      <table className="job-table mx-auto" align='center'>
+
+      {/* Animated table for jobs */}
+      <motion.table 
+        className="job-table mx-auto"
+        align='center'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.7 }}
+      >
         <thead>
           <tr>
             <th>JOB ID</th>
@@ -47,7 +63,11 @@ export default function ViewJobs() {
         <tbody>
           {Array.isArray(jobs) && jobs.length > 0 ? (
             jobs.map((job, index) => (
-              <tr key={index}>
+              <motion.tr 
+                key={index}
+                whileHover={{ scale: 1.02 }} // Slight hover effect for rows
+                transition={{ duration: 0.2 }}
+              >
                 <td>{job.jobid}</td>
                 <td>{job.title}</td>
                 <td>{job.company}</td>
@@ -55,15 +75,19 @@ export default function ViewJobs() {
                 <td>{job.salary}</td>
                 <td>{job.deadline}</td>
                 <td>{job.postedtime}</td>
-              </tr>
+              </motion.tr>
             ))
           ) : (
-            <tr>
-              <td colSpan="7">Data Not Found</td>
-            </tr>
+            <motion.tr 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <td colSpan="7">No Jobs Found</td>
+            </motion.tr>
           )}
         </tbody>
-      </table>
-    </div>
+      </motion.table>
+    </motion.div>
   );
 }

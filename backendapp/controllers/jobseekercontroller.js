@@ -2,6 +2,10 @@ const JobSeeker = require("../models/JobSeeker")
 const Job = require("../models/Job")
 const JobApplicant = require("../models/JobApplicant")
 
+/**
+ * Registers a new job seeker.
+ * Saves the job seeker details to the database.
+ */
 const insertjobseeker = async (request, response) => {
     try 
     {
@@ -14,10 +18,14 @@ const insertjobseeker = async (request, response) => {
     {
       response.status(500).send(e.message);
     }
-  };
+};
 
-  const updatejobseekerprofile = async (request, response) => 
-  {
+/**
+ * Updates the job seeker profile.
+ * Finds the job seeker by email and updates the provided fields.
+ */
+const updatejobseekerprofile = async (request, response) => 
+{
     try 
     {
       const input = request.body;
@@ -40,11 +48,14 @@ const insertjobseeker = async (request, response) => {
     {
       response.status(500).send(e.message);
     }
-  };
+};
 
-
-  const checkjobseekerlogin = async (request, response) => 
-  {
+/**
+ * Checks job seeker login credentials.
+ * Returns job seeker details if authentication is successful.
+ */
+const checkjobseekerlogin = async (request, response) => 
+{
      try 
      {
        const input = request.body
@@ -55,32 +66,39 @@ const insertjobseeker = async (request, response) => {
      {
        response.status(500).send(error.message);
      }
-   };
+};
 
-   const jobseekerprofile = async (request, response) => 
-   {
-      try 
+/**
+ * Retrieves the job seeker profile by email.
+ * Returns job seeker details if found.
+ */
+const jobseekerprofile = async (request, response) => 
+{
+    try 
+    {
+      const email = request.params.email
+      const jobseeker = await JobSeeker.findOne({email})
+      if(jobseeker)
       {
-        const email = request.params.email
-        const jobseeker = await JobSeeker.findOne({email})
-        if(jobseeker)
-        {
-          response.json(jobseeker)
-        }
-        else
-        {
-          return response.status(200).send('Job seeker not found with the provided email id');
-        }
-        
-      } 
-      catch (error) 
-      {
-        response.status(500).send(error.message);
+        response.json(jobseeker)
       }
-    };
+      else
+      {
+        return response.status(200).send('Job seeker not found with the provided email id');
+      }
+    } 
+    catch (error) 
+    {
+      response.status(500).send(error.message);
+    }
+};
 
-  const viewjobsbyjobseeker = async (request, response) => 
- {
+/**
+ * Retrieves all available job listings.
+ * Returns a list of jobs or a message if no jobs are found.
+ */
+const viewjobsbyjobseeker = async (request, response) => 
+{
     try 
     {
       const jobs = await Job.find();
@@ -97,10 +115,14 @@ const insertjobseeker = async (request, response) => {
     {
       response.status(500).send(error.message);
     }
-  };
+};
 
-  const appliedjobs = async (request, response) => 
- {
+/**
+ * Retrieves the jobs applied by a job seeker using their email.
+ * Returns a list of applied jobs or a message if no applications are found.
+ */
+const appliedjobs = async (request, response) => 
+{
     try 
     {
       const email = request.params.email
@@ -118,12 +140,16 @@ const insertjobseeker = async (request, response) => {
     {
       response.status(500).send(error.message);
     }
-  };
+};
 
-  const applyjob = async (request, response) => {
+/**
+ * Allows a job seeker to apply for a job.
+ * Checks if the job seeker has already applied before submitting the application.
+ */
+const applyjob = async (request, response) => {
     try 
     {
-      const input = request.body; // job id and job seeker mail id
+      const input = request.body; // job id and job seeker email id
       const alreadyapplied = await JobApplicant.findOne(input)
       if(!alreadyapplied)
       {
@@ -140,7 +166,6 @@ const insertjobseeker = async (request, response) => {
     {
       response.status(500).send(e.message);
     }
-  };
+};
 
-
-  module.exports = {insertjobseeker,checkjobseekerlogin,updatejobseekerprofile,jobseekerprofile,viewjobsbyjobseeker,applyjob,appliedjobs}
+module.exports = {insertjobseeker, checkjobseekerlogin, updatejobseekerprofile, jobseekerprofile, viewjobsbyjobseeker, applyjob, appliedjobs}

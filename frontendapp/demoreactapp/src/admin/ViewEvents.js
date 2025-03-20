@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion'; // Import Framer Motion for animations
 import './admin.css';
-import config from '../config'
+import config from '../config';
 
 export default function ViewEvents() {
   const [events, setEvents] = useState([]);
 
+  // Function to fetch events from the server
   const fetchEvents = async () => {
     try {
       const response = await axios.get(`${config.url}/viewevents`);
@@ -15,14 +17,29 @@ export default function ViewEvents() {
     }
   };
 
+  // Fetch events when the component mounts
   useEffect(() => {
     fetchEvents();
   }, []);
 
   return (
-    <div>
+    <motion.div 
+      initial={{ opacity: 0, y: -20 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.8 }}
+    >
+      {/* Page Title */}
       <h1 align="center">Events</h1>
-      <table border={1} align="center">
+
+      {/* Events Table */}
+      <motion.table 
+        border={1} 
+        align="center" 
+        className="styled-table"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+      >
         <thead>
           <tr>
             <th>Title</th>
@@ -36,21 +53,31 @@ export default function ViewEvents() {
         <tbody>
           {events.length > 0 ? (
             events.map((event, index) => (
-              <tr key={index}>
+              <motion.tr 
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }} // Delayed animation for rows
+              >
                 <td>{event.title}</td>
                 <td>{event.category}</td>
                 <td>{event.description}</td>
                 <td>{event.date}</td>
                 <td>{event.location}</td>
                 <td>
-  {event.file.endsWith('.jpg') || event.file.endsWith('.jpeg') || event.file.endsWith('.png') ? (
-    <img src={`${config.url}/eventimage/${event.file}`} alt="Event" style={{ width: '250px', height: '250px' }} />
-  ) : (
-    <a href={`${config.url}/eventimage/${event.file}`}>Click Here</a>
-  )}
-</td>
-
-              </tr>
+                  {/* Display image or link based on file type */}
+                  {event.file.endsWith('.jpg') || event.file.endsWith('.jpeg') || event.file.endsWith('.png') ? (
+                    <motion.img 
+                      src={`${config.url}/eventimage/${event.file}`} 
+                      alt="Event" 
+                      className="event-image"
+                      whileHover={{ scale: 1.1 }}
+                    />
+                  ) : (
+                    <a href={`${config.url}/eventimage/${event.file}`} className="event-link">Click Here</a>
+                  )}
+                </td>
+              </motion.tr>
             ))
           ) : (
             <tr>
@@ -58,7 +85,7 @@ export default function ViewEvents() {
             </tr>
           )}
         </tbody>
-      </table>
-    </div>
+      </motion.table>
+    </motion.div>
   );
 }

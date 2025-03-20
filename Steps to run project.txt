@@ -1,0 +1,69 @@
+Steps to Set Up and Run the Project
+
+1. Install Required Software:
+
+Install Node.js
+Install MongoDB
+
+
+2. Set Up the Project:
+
+Clone the repository using: git clone <your-repository-url>
+Navigate to the project folder: cd <your-project-folder>
+(If no repository) Manually create a folder and copy all files into it.
+
+
+3. Install Dependencies:
+
+Run: npm install
+(If missing modules) Manually install: npm install express mongoose nodemailer moment-timezone cors dotenv
+
+
+4. Set Up MongoDB:
+
+Local MongoDB:
+Start the database: mongod
+MongoDB Atlas:
+Create an account on MongoDB Atlas.
+Set up a new cluster and get the connection string.
+Replace the local MongoDB URL with your Atlas connection string.
+
+
+
+5. Create a .env File (Optional):
+
+Create a .env file in the project folder.
+Add:
+MONGO_URI=mongodb://localhost:27017/jobportal
+PORT=5000
+(If using Atlas) Replace MONGO_URI with your Atlas connection string.
+
+
+
+6. Start the Backend Server:
+
+Run: node server.js
+
+(Or, for automatic restarts)
+ Run: nodemon server.js
+(Expected output) MongoDB Connected and Server running on port 5000
+
+
+
+7. Start the Frontend (If Applicable):
+
+Navigate to the frontend folder: cd frontend
+Run: npm run start
+
+
+8. Test API Endpoints (Optional):
+
+Use Postman or cURL to test API endpoints.
+Ensure the backend server is running before sending requests.
+
+
+9. Run the Project:
+
+Open your frontend application or browser.
+Connect it to the backend.
+Start using the application. 🚀

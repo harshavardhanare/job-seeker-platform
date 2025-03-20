@@ -1,6 +1,46 @@
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import axios from 'axios';
-import config from '../config'
+import config from '../config';
+import styled from 'styled-components';
+
+const FormContainer = styled(motion.div)`
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+const Button = styled(motion.button)`
+  background: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  &:hover {
+    background: #0056b3;
+  }
+`;
 
 export default function AddEvent() {
   const [formData, setFormData] = useState({
@@ -12,8 +52,7 @@ export default function AddEvent() {
     file: null
   });
  
-  const fileInputRef = useRef(null); // Ref for the file input element
-
+  const fileInputRef = useRef(null);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
@@ -34,67 +73,49 @@ export default function AddEvent() {
       formDataToSend.append('description', formData.description);
       formDataToSend.append('date', formData.date);
       formDataToSend.append('location', formData.location);
-      formDataToSend.append('file', formData.file); // Append the file object
+      formDataToSend.append('file', formData.file);
 
       const response = await axios.post(`${config.url}/createevent`, formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data' // Set content type for FormData
-        }
+        headers: { 'Content-Type': 'multipart/form-data' }
       });
 
       if (response.status === 200) {
-        setFormData({
-          category: '',
-          title: '',
-          description: '',
-          date: '',
-          location: '',
-          file: null
-        });
+        setFormData({ category: '', title: '', description: '', date: '', location: '', file: null });
         fileInputRef.current.value = '';
       }
       setMessage(response.data);
       setError('');
-    } 
-    catch (error) 
-    {
+    } catch (error) {
       setError(error.response.data);
       setMessage('');
     }
   };
 
   return (
-    <div>
-      <h3 align="center"><u>Add Event</u></h3>
-      {message ? <h4 align="center">{message}</h4> : null}
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+      <h3 align="center" style={{ color: '#007bff' }}><u>Add Event</u></h3>
+      {message ? <h4 align="center" style={{ color: 'green' }}>{message}</h4> : null}
       {error ? <h4 align="center" style={{ color: 'red' }}>{error}</h4> : null}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div>
+      <FormContainer
+        initial={{ y: -20 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <label>Category</label>
-          <input type="text" id="category" value={formData.category} onChange={handleChange} required />
-        </div>
-        <div>
+          <Input type="text" id="category" value={formData.category} onChange={handleChange} required />
           <label>Title</label>
-          <input type="text" id="title" value={formData.title} onChange={handleChange} required />
-        </div>
-        <div>
+          <Input type="text" id="title" value={formData.title} onChange={handleChange} required />
           <label>Description</label>
-          <textarea id="description" value={formData.description} onChange={handleChange} required />
-        </div>
-        <div>
+          <TextArea id="description" value={formData.description} onChange={handleChange} required />
           <label>Date</label>
-          <input type="date" id="date" value={formData.date} onChange={handleChange} required />
-        </div>
-        <div>
+          <Input type="date" id="date" value={formData.date} onChange={handleChange} required />
           <label>Location</label>
-          <input type="text" id="location" value={formData.location} onChange={handleChange} required />
-        </div>
-        <div>
+          <Input type="text" id="location" value={formData.location} onChange={handleChange} required />
           <label>Image</label>
-          <input type="file" id="file" ref={fileInputRef} onChange={handleFileChange} required />
-        </div>
-        <button type="submit">Add</button>
-      </form>
-    </div>
+          <Input type="file" id="file" ref={fileInputRef} onChange={handleFileChange} required />
+          <Button type="submit" whileHover={{ scale: 1.1 }}>Add</Button>
+        </form>
+      </FormContainer>
+    </motion.div>
   );
 }

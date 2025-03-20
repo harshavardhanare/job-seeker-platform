@@ -258,3 +258,338 @@ button[type='submit']:hover {
     opacity: 1;
   }
 }
+
+/* Add Job Container */
+.add-job-container {
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Title */
+.title {
+  text-align: center;
+  color: #007BFF;
+}
+
+/* Success & Error Messages */
+.message {
+  text-align: center;
+  color: green;
+}
+
+.error {
+  text-align: center;
+  color: red;
+}
+
+/* Job Form */
+.job-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Labels */
+.job-form label {
+  font-weight: bold;
+}
+
+/* Inputs & Textareas */
+.job-form input, 
+.job-form textarea, 
+.job-form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Submit Button */
+.submit-button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #28a745;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #218838;
+}
+
+/* Login Container */
+.login-container {
+  width: 30%;
+  margin: 50px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.login-container h3 {
+  color: #007BFF;
+  text-align: center;
+}
+
+/* Message & Error */
+.message {
+  text-align: center;
+  color: green;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Login Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* Labels */
+.login-form label {
+  font-weight: bold;
+}
+
+/* Inputs */
+.login-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Login Button */
+.login-button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #28a745;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background: #218838;
+}
+
+
+/* Navbar Styling */
+.navbar {
+  background-color: #007BFF;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 15px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #FFD700;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+/* Logout Button */
+.logoutButton {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #c82333;
+}
+
+
+
+/* Profile Card Styling */
+.profile-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+/* Add slight hover effect */
+.profile-card:hover {
+  transform: scale(1.02);
+}
+
+.profile-card p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Table Container */
+.table-container {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Job Table */
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.job-table th, .job-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.job-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/* Button Styling */
+.selected, .rejected {
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.selected {
+  background-color: green;
+  color: white;
+}
+
+.selected:hover {
+  background-color: darkgreen;
+}
+
+.rejected {
+  background-color: red;
+  color: white;
+}
+
+.rejected:hover {
+  background-color: darkred;
+}
+
+/* Table Container */
+.table-container {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Job Table */
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.job-table th, .job-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.job-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/* Row Hover Effect */
+.job-table tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease-in-out;
+}
+
+

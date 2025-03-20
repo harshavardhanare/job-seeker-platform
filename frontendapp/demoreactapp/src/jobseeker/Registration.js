@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion'; // Import Framer Motion for animations
 
-export default function Registration() 
-{
-  //formData state variable is initialized with all required keys and empty values
+export default function Registration() {
+  // State to hold form data
   const [formData, setFormData] = useState({
     fullname: '',
     gender: '',
@@ -14,36 +14,28 @@ export default function Registration()
     contact: ''
   });
 
-  //message state variable
+  // State to hold success or error messages
   const [message, setMessage] = useState('');
-  //error state variable
   const [error, setError] = useState('');
 
-  const handleChange = (e) => // e means event
-  {
-    
-    setFormData({...formData, [e.target.id]: e.target.value});
-    
-    // It updates the state `formData` by adding or updating a property with a key equal to 
-    //the ID of the input field 
-    //that triggered the change event (e.target.id). The value of this property is 
-    //set to the new value entered in that input field (e.target.value).
+  // Handles changes in form input fields
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+
+  // Converts input text to uppercase on key up event
   const changetext = (e) => {
-    const txt = e.target.value.toUpperCase()
-    e.target.value = txt
-}
+    const txt = e.target.value.toUpperCase();
+    e.target.value = txt;
+  };
 
-
-  const handleSubmit = async (e) => 
-  {
+  // Handles form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try 
-    {
+    try {
       const response = await axios.post('http://localhost:2032/insertjobseeker', formData);
-      if (response.status === 200) 
-      {
-        //It will set all fields to ""
+      if (response.status === 200) {
+        // Reset form fields on successful submission
         setFormData({
           fullname: '',
           gender: '',
@@ -55,26 +47,26 @@ export default function Registration()
         });
       }
       setMessage(response.data);
-      setError(''); //set error to ""
-    } 
-    catch(error) 
-    {
+      setError('');
+    } catch (error) {
       setError(error.response.data);
-      setMessage(''); //set message to ""
+      setMessage('');
     }
   };
-  
-  return (
-    <div>
-      <h3 align="center"><u>Job Seeker Registration</u></h3>
-      {
-        message ? <h4 align="center">{message}</h4> : <h4 align="center">{error}</h4>
-      }
 
-      <form onSubmit={handleSubmit}>
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 0.5 }}
+    >
+      <h3 align="center"><u>Job Seeker Registration</u></h3>
+      {message ? <h4 align="center">{message}</h4> : <h4 align="center" style={{ color: "red" }}>{error}</h4>}
+
+      <motion.form onSubmit={handleSubmit} initial={{ scale: 0.9 }} animate={{ scale: 1 }} transition={{ duration: 0.5 }}>
         <div>
           <label>Full Name</label>
-          <input type="text" id="fullname" value={formData.fullname} onChange={handleChange} onKeyUp={changetext}  required />
+          <input type="text" id="fullname" value={formData.fullname} onChange={handleChange} onKeyUp={changetext} required />
         </div>
         <div>
           <label>Gender</label>
@@ -105,8 +97,14 @@ export default function Registration()
           <label>Contact</label>
           <input type="number" id="contact" value={formData.contact} onChange={handleChange} required />
         </div>
-        <button type="submit">Register</button>
-      </form>
-    </div>
+        <motion.button 
+          type="submit" 
+          whileHover={{ scale: 1.1 }} 
+          whileTap={{ scale: 0.9 }}
+        >
+          Register
+        </motion.button>
+      </motion.form>
+    </motion.div>
   );
 }
