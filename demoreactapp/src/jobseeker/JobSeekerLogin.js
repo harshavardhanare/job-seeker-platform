@@ -27,7 +27,7 @@ export default function JobSeekerLogin({ onJobSeekerLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:2032/checkjobseekerlogin', formData);
+      const response = await axios.post('https://job-seeker-platform3.onrender.com/checkjobseekerlogin', formData);
       if (response.data != null) {
         onJobSeekerLogin();
         localStorage.setItem('jobseeker', JSON.stringify(response.data));

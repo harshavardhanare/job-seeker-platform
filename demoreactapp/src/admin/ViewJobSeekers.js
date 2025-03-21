@@ -26,7 +26,7 @@ export default function ViewJobSeekers() {
   // Function to delete a job seeker by email
   const deleteJobSeeker = async (email) => {
     try {
-      await axios.delete(`http://localhost:2032/deletejobseeker/${email}`);
+      await axios.delete(`https://job-seeker-platform3.onrender.com/deletejobseeker/${email}`);
       fetchJobSeekers(); // Refresh the list after deletion
     } catch (error) {
       console.error("Error deleting job seeker:", error.message);

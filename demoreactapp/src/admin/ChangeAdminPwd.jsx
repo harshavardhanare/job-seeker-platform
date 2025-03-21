@@ -35,7 +35,7 @@ export default function ChangeAdminPwd() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put('http://localhost:2032/changeadminpwd', { 
+      const response = await axios.put('https://job-seeker-platform3.onrender.com/changeadminpwd', { 
         ...formData, 
         "username": adminData.username 
       });

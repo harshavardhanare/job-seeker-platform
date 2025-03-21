@@ -33,7 +33,7 @@ export default function Registration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:2032/insertjobseeker', formData);
+      const response = await axios.post('https://job-seeker-platform3.onrender.com/insertjobseeker', formData);
       if (response.status === 200) {
         // Reset form fields on successful submission
         setFormData({

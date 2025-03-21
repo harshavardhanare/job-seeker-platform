@@ -21,7 +21,7 @@ export default function ViewJobsPosted()
   
   const fetchJobs = async () => {
     try {
-      const response = await axios.get(`http://localhost:2032/viewjobsbyjobseeker/`);
+      const response = await axios.get(`https://job-seeker-platform3.onrender.com/viewjobsbyjobseeker/`);
       setJobs(response.data);
     } catch (error) {
       console.error(error.message);
@@ -35,7 +35,7 @@ export default function ViewJobsPosted()
   const applyJob = async (jobid, jobseekeremail) => {
     try 
     {
-      const response = await axios.post('http://localhost:2032/applyjob', { jobid, jobseekeremail });
+      const response = await axios.post('https://job-seeker-platform3.onrender.com/applyjob', { jobid, jobseekeremail });
       fetchJobs();
       setMessage(response.data);
       setError('');

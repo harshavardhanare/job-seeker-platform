@@ -23,7 +23,7 @@ export default function ViewAppliedJobs() {
 
     const fetchJobApplicants = async () => {
         try {
-            const response = await axios.get(`http://localhost:2032/appliedjobs/${jobseekerData.email}`);
+            const response = await axios.get(`https://job-seeker-platform3.onrender.com/appliedjobs/${jobseekerData.email}`);
             setJobApplicants(response.data);
         } catch (error) {
             setError(error.response.data);

@@ -20,7 +20,7 @@ export default function ViewJobs() {
   // Fetch jobs posted by the recruiter
   const fetchJobs = async () => {
     try {
-      const response = await axios.get(`http://localhost:2032/viewjobs/${recruiterData.username}`);
+      const response = await axios.get(`https://job-seeker-platform3.onrender.com/${recruiterData.username}`);
       setJobs(response.data);
     } catch (error) {
       console.error("Error fetching jobs:", error.message);

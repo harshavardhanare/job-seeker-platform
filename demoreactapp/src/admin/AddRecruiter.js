@@ -33,7 +33,7 @@ export default function AddRecruiter()
     e.preventDefault();
     try 
     {
-      const response = await axios.post('http://localhost:2032/addrecruiter', formData);
+      const response = await axios.post('https://job-seeker-platform3.onrender.com/addrecruiter', formData);
       if (response.status === 200) 
       {
         setFormData({

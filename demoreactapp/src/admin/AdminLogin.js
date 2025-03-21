@@ -63,7 +63,7 @@ export default function AdminLogin({ onAdminLogin }) {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:2032/checkadminlogin', formData);
+      const response = await axios.post('https://job-seeker-platform3.onrender.com/checkadminlogin', formData);
 
       if (response.data) {
         onAdminLogin();

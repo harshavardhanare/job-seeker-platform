@@ -22,7 +22,7 @@ export default function ViewJobApplicants() {
   // Fetch job applicants for the recruiter
   const fetchJobApplicants = async () => {
     try {
-      const response = await axios.get(`http://localhost:2032/viewjobapplicants/${recruiterData.username}`);
+      const response = await axios.get(`https://job-seeker-platform3.onrender.com/viewjobapplicants/${recruiterData.username}`);
       setJobApplicants(response.data);
       setError('');
     } catch (error) {
@@ -38,7 +38,7 @@ export default function ViewJobApplicants() {
   // Handle status change for job applicants
   const handleStatusChange = async (applicantId, status) => {
     try {
-      const response = await axios.post('http://localhost:2032/changejobstatus', { applicantId, status });
+      const response = await axios.post('https://job-seeker-platform3.onrender.com/changejobstatus', { applicantId, status });
       fetchJobApplicants(); // Refresh job applicants after status change
       setMessage(response.data);
       setError('');

@@ -29,7 +29,7 @@ export default function RecruiterLogin({ onRecruiterLogin }) {
     e.preventDefault();
     try {
       // Send login request to the backend
-      const response = await axios.post('http://localhost:2032/checkrecruiterlogin', formData);
+      const response = await axios.post('https://job-seeker-platform3.onrender.com/checkrecruiterlogin', formData);
 
       // If login is successful
       if (response.data != null) {

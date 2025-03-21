@@ -45,10 +45,10 @@ export default function UpdateJSProfile() {
       }
       if (Object.keys(updatedData).length !== 0) {
         updatedData.email = jobseekerData.email;
-        const response = await axios.put('http://localhost:2032/updatejobseekerprofile', updatedData);
+        const response = await axios.put('https://job-seeker-platform3.onrender.com/updatejobseekerprofile', updatedData);
         setMessage(response.data);
         setError('');
-        const res = await axios.get(`http://localhost:2032/jobseekerprofile/${jobseekerData.email}`);
+        const res = await axios.get(`https://job-seeker-platform3.onrender.com/jobseekerprofile/${jobseekerData.email}`);
         localStorage.setItem("jobseeker", JSON.stringify(res.data));
       } else {
         setMessage("No Changes in Job Seeker Profile");

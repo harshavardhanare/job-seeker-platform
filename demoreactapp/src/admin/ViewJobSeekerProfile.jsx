@@ -10,7 +10,7 @@ export default function ViewJobSeekerProfile() {
   useEffect(() => {
     const fetchJobSeekerData = async () => {
       try {
-        const response = await axios.get(`http://localhost:2032/viewjobseekerprofile/${email}`);
+        const response = await axios.get(`https://job-seeker-platform3.onrender.com/viewjobseekerprofile/${email}`);
         setJobSeekerData(response.data);
       } catch (error) {
         console.error(error.message);

@@ -8,7 +8,7 @@ export default function DeleteJobSeeker() {
   // Function to fetch job seekers from the server
   const fetchJobSeekers = async () => {
     try {
-      const response = await axios.get("http://localhost:2032/viewjobseekers");
+      const response = await axios.get("https://job-seeker-platform3.onrender.com/viewjobseekers");
       setJobSeekers(response.data);
     } catch (error) {
       console.error(error.message);
@@ -23,7 +23,7 @@ export default function DeleteJobSeeker() {
   // Function to delete a job seeker
   const deleteJobSeeker = async (email) => {
     try {
-      await axios.delete(`http://localhost:2032/deletejobseeker/${email}`);
+      await axios.delete(`https://job-seeker-platform3.onrender.com/deletejobseeker/${email}`);
       fetchJobSeekers(); // Refresh the job seeker list after deletion
     } catch (error) {
       console.error(error.message);

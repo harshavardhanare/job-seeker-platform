@@ -75,7 +75,7 @@ export default function AddEvent() {
       formDataToSend.append('location', formData.location);
       formDataToSend.append('file', formData.file);
 
-      const response = await axios.post(`${config.url}/createevent`, formDataToSend, {
+      const response = await axios.post(`https://job-seeker-platform3.onrender.com/createevent`, formDataToSend, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

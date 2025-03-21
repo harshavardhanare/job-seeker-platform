@@ -25,7 +25,7 @@ export default function ViewRecruiters() {
   const deleteRecruiter = async (username) => {
     if (window.confirm("Are you sure you want to delete this recruiter?")) {
       try {
-        await axios.delete(`http://localhost:2032/deleterecruiter/${username}`);
+        await axios.delete(`https://job-seeker-platform3.onrender.com/deleterecruiter/${username}`);
         fetchRecruiters(); // Refresh the list after deletion
       } catch (error) {
         console.error("Error deleting recruiter:", error.message);

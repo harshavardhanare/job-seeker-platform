@@ -53,7 +53,7 @@ export default function AddJob() {
     e.preventDefault();
     try {
       // Send POST request to add a job
-      const response = await axios.post('http://localhost:2032/addjob', { 
+      const response = await axios.post('https://job-seeker-platform3.onrender.com/addjob', { 
         ...formData, 
         recruiter: recruiterData, 
         company: recruiterData.company 

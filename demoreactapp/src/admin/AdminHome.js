@@ -42,7 +42,7 @@ export default function AdminHome() {
 
   const fetchCounts = async () => {
     try {
-      const response = await axios.get(`http://localhost:2032/analysis`);
+      const response = await axios.get(`https://job-seeker-platform3.onrender.com/analysis`);
       setCounts(response.data);
     } catch (error) {
       setError('Failed to fetch counts');

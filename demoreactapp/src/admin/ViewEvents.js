@@ -10,7 +10,7 @@ export default function ViewEvents() {
   // Function to fetch events from the server
   const fetchEvents = async () => {
     try {
-      const response = await axios.get(`${config.url}/viewevents`);
+      const response = await axios.get(`https://job-seeker-platform3.onrender.com/viewevents`);
       setEvents(response.data);
     } catch (error) {
       console.error(error.message);
