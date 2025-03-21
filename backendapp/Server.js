@@ -1,11 +1,19 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
-require('dotenv').config();
+const path = require("path");require('dotenv').config();
 
 // MongoDB compass connection
 //const dburl = "mongodb://localhost:27017/demoproject32"
 const dburl = process.env.mongodburl
+const _dirname = path.resolve();
+const app = express()
+
+app.use(express.static(path.join(_dirname, "demoreactapp/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(_dirname, "demoreactapp", "build", "index.html"));
+});
 mongoose.connect(dburl).then(() => {
     console.log("Connected to DB Successfully")
 }).catch((err) => {
@@ -22,10 +30,13 @@ mongoose.connect(dburl).then(() => {
 // });
 
 
-const app = express()
 app.use(express.json()) // to parse JSON data
-app.use(cors())
-
+app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+    })
+  );
 const adminrouter = require("./routes/adminroutes")
 const jobseekerrouter = require("./routes/jobseekerroutes");
 const recruiterrouter = require("./routes/recruiterroutes")
