@@ -7,7 +7,7 @@ const gmailTransporter = nodemailer.createTransport({
         user: 'harshachowdary35@gmail.com', // Sender's Gmail ID
         pass: '22761A0503@v' // App password for authentication
     }
-});
+}); 
 
 // Define mail options, including sender, receiver, subject, and content
 const mailOptions = {

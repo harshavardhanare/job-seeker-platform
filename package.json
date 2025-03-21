@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon backendapp/server.js",
-    "start": "node backendapp/server.js",
+    "dev": "nodemon backendapp/Server.js",
+    "start": "node backendapp/Server.js",
     "build": "npm install && npm install --prefix demoreactapp && npm run build --prefix demoreactapp"
   },
   "author": "ARE HARSHA VARDHAN",
